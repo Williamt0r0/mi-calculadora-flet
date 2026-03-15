@@ -16,7 +16,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install flet
-          pip install flet-embed
 
       - name: Build APK
         run: flet build apk
