@@ -4,11 +4,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -19,13 +16,10 @@ jobs:
         run: pip install flet
           
       - name: Build APK
-        uses: flet-dev/flet-build-action@main
-        with:
-          target: android
-          project_dir: .
-
-      - name: Upload APK Artifact
+        run: flet build apk
+          
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: mi-calculadora-instalable
+          name: MiCalculadoraInstalable
           path: build/apk/*.apk
